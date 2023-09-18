@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Password Generator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+
+    body {
+      font-family: "Hubballi";
+      background-color: #f0f0f0;
+      margin: 0 auto;
+      margin-top: 50px;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: auto;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0 auto;
+    }
+
+    label {
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      font-family: "Hubballi";
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    button {
+      font-family: "Hubballi";
+      background-color: #0074d9;
+      color: #fff;
+      border: none;
+      border-radius: 13px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .fff {
+      position: relative;
+      text-shadow: 1px 1px 5px rgb(74, 24, 238),
+        1px 1px 5px rgb(76, 31, 224), 1px 1px 3px rgb(83, 43, 215),
+        1px 1px 5px rgb(94, 58, 212);
+    }
+
+    .result {
+      margin-top: 20px;
+    }
+
+    #password {
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 style="text-align: center;">Password Generator</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="options">
+        <label for="length">Password Length:</label>
+        <input type="number" id="length" min="8" max="100000" value="10" />
+        <br />
+        <label for="uppercase">Include Uppercase Letters:</label>
+        <input type="checkbox" id="uppercase" checked />
+        <br />
+        <label for="lowercase">Include Lowercase Letters:</label>
+        <input type="checkbox" id="lowercase" checked />
+        <br />
+        <label for="numbers">Include Numbers:</label>
+        <input type="checkbox" id="numbers" checked />
+        <br />
+        <label for="symbols">Include Symbols:</label>
+        <input type="checkbox" id="symbols" checked />
+        <br />
+      </div>
+      <button id="generate">Generate Password</button>
+      <div class="result">
+        <input type="text" id="password" readonly />
+        <button id="copy">Copy to Clipboard</button>
+        <button id="download">Download Password</button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const lengthInput = document.getElementById("length");
+        const uppercaseCheckbox = document.getElementById("uppercase");
+        const lowercaseCheckbox = document.getElementById("lowercase");
+        const numbersCheckbox = document.getElementById("numbers");
+        const symbolsCheckbox = document.getElementById("symbols");
+        const generateButton = document.getElementById("generate");
+        const copyButton = document.getElementById("copy");
+        const passwordField = document.getElementById("password");
+        const downloadButton = document.getElementById("download");
+
+        generateButton.addEventListener("click", function () {
+          const length = parseInt(lengthInput.value);
+          const uppercase = uppercaseCheckbox.checked;
+          const lowercase = lowercaseCheckbox.checked;
+          const numbers = numbersCheckbox.checked;
+          const symbols = symbolsCheckbox.checked;
+
+          const password = generatePassword(
+            length,
+            uppercase,
+            lowercase,
+            numbers,
+            symbols
+          );
+          passwordField.value = password;
+        });
+
+        copyButton.addEventListener("click", function () {
+          passwordField.select();
+          document.execCommand("copy");
+          alert("Password copied to clipboard");
+        });
+
+        downloadButton.addEventListener("click", function () {
+          const password = passwordField.value;
+          const blob = new Blob([password], { type: "text/plain" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "generated_password.txt";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+
+        function generatePassword(
+          length,
+          uppercase,
+          lowercase,
+          numbers,
+          symbols
+        ) {
+          let charset = "";
+          if (uppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          if (lowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+          if (numbers) charset += "0123456789";
+          if (symbols) charset += "!@#$%^&*()_-+=<>?";
+
+          let password = "";
+          for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            password += charset.charAt(randomIndex);
+          }
+
+          return password;
+        }
+      });
+    </script>
+  </main>
+
+  <footer>
+    <p style="text-align: center">Developed with ❤️ by <span class="fff">Kamolgks</span></p>
+  </footer>
+</body>
+
+</html>
