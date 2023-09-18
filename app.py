@@ -57,4 +57,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(port=1923)
+    app.run(debug=True)
