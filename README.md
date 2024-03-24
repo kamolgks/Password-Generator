@@ -1,7 +1,14 @@
 # Screenshots (Desktop):
 
 <img src="./static/images/v1.jpg">
-<img src="./static/images/v2.jpg">>
+<img src="./static/images/v2.jpg">
+
+---
+
+# Screenshots (Mobile):
+
+<img src="./static/images/v3.jpg">
+<img src="./static/images/v4.jpg">
 
 ---
 
@@ -11,7 +18,7 @@ Clone the repository:
 
 <pre lang="bash">git clone https://github.com/Kamolgks/Password-Generator</pre>
   
-Then install requirements
+Then install requirements:
 
 <pre lang="bash">pip install -r requirements.txt</pre>
 
@@ -25,3 +32,9 @@ Then run the file:
 
 - Python3 (version 3.8 or later)
 - Flask
+
+---
+
+## License
+
+This project is licensed under the [GNU GENERAL PUBLIC LICENSE](LICENSE).

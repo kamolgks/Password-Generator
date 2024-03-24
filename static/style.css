@@ -121,4 +121,9 @@ button:hover {
   body {
     margin-top: 10px;
   }
+  .theme-btn {
+    position: fixed;
+    top: 40px;
+    right: 10px;
+  }
 }
