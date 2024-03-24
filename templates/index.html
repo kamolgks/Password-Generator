@@ -2,202 +2,142 @@
 <html lang="en">
 
 <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Password Generator">
+  <meta name="robots" content="index, nofollow, noarchive">
+
   <title>Password Generator</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style type="text/css">
-    @import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Password Generator">
+  <meta property="og:description" content="Password Generator by @Kamolgks">
 
-    body {
-      font-family: "Hubballi";
-      background-color: #f0f0f0;
-      margin: 0 auto;
-      margin-top: 50px;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      margin-top: auto;
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      margin-top: 0 auto;
-    }
-
-    label {
-      margin: 0 auto;
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input[type="number"] {
-      font-family: "Hubballi";
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 5px;
-    }
-
-    button {
-      font-family: "Hubballi";
-      background-color: #0074d9;
-      color: #fff;
-      border: none;
-      border-radius: 13px;
-      padding: 10px 20px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .fff {
-      position: relative;
-      text-shadow: 1px 1px 5px rgb(74, 24, 238),
-        1px 1px 5px rgb(76, 31, 224), 1px 1px 3px rgb(83, 43, 215),
-        1px 1px 5px rgb(94, 58, 212);
-    }
-
-    .result {
-      margin-top: 20px;
-    }
-
-    #password {
-      width: 95%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        margin-top: 10px;
-      }
-    }
-  </style>
+  <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
+
 
 <body>
   <header>
-    <h1 style="text-align: center;">Password Generator</h1>
+    <h1>Password Generator</h1>
   </header>
   <main>
+    <button class="theme-btn" onclick="changeTheme()" style="display: flex; align-items: center; justify-content: center;">
+      <img id="theme-img" src="{{ url_for('static', filename='images/moon.png') }}" style="width: 30px;">
+    </button>
+    <script type="text/javascript">
+      function changeTheme() {
+        const body = document.body;
+        const container = document.querySelector('.container');
+        const currentTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
+        body.classList.toggle('dark-theme');
+
+        if (currentTheme === 'light') {
+          body.style.backgroundColor = '#fff';
+          body.style.color = '#000';
+          container.style.color = '#000';
+          document.getElementById('theme-img').src = "{{ url_for('static', filename='images/moon.png') }}";
+        } else {
+          body.style.backgroundColor = '#222';
+          body.style.color = '#fff';
+          container.style.color = '#fff';
+          document.getElementById('theme-img').src = "{{ url_for('static', filename='images/sun.png') }}";
+        }
+      }
+    </script> 
     <div class="container">
       <div class="options">
         <label for="length">Password Length:</label>
-        <input type="number" id="length" min="8" max="100000" value="10" />
-        <br />
+        <input type="number" id="length" min="8" max="128" value="8">
+        <br>
         <label for="uppercase">Include Uppercase Letters:</label>
-        <input type="checkbox" id="uppercase" checked />
-        <br />
+        <input type="checkbox" id="uppercase" checked>
+        <br>
         <label for="lowercase">Include Lowercase Letters:</label>
-        <input type="checkbox" id="lowercase" checked />
-        <br />
+        <input type="checkbox" id="lowercase" checked>
+        <br>
         <label for="numbers">Include Numbers:</label>
-        <input type="checkbox" id="numbers" checked />
-        <br />
+        <input type="checkbox" id="numbers" checked>
+        <br>
         <label for="symbols">Include Symbols:</label>
-        <input type="checkbox" id="symbols" checked />
-        <br />
+        <input type="checkbox" id="symbols" checked>
+        <br>
       </div>
+
       <button id="generate">Generate Password</button>
       <div class="result">
-        <input type="text" id="password" readonly />
+        <input type="result" id="password" readonly>
         <button id="copy">Copy to Clipboard</button>
         <button id="download">Download Password</button>
+        <div id="load-notif" style="display: none;">Generating password...</div>
       </div>
+
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const lengthInput = document.getElementById("length");
-        const uppercaseCheckbox = document.getElementById("uppercase");
-        const lowercaseCheckbox = document.getElementById("lowercase");
-        const numbersCheckbox = document.getElementById("numbers");
-        const symbolsCheckbox = document.getElementById("symbols");
-        const generateButton = document.getElementById("generate");
-        const copyButton = document.getElementById("copy");
-        const passwordField = document.getElementById("password");
-        const downloadButton = document.getElementById("download");
-
-        generateButton.addEventListener("click", function () {
-          const length = parseInt(lengthInput.value);
-          const uppercase = uppercaseCheckbox.checked;
-          const lowercase = lowercaseCheckbox.checked;
-          const numbers = numbersCheckbox.checked;
-          const symbols = symbolsCheckbox.checked;
-
-          const password = generatePassword(
-            length,
-            uppercase,
-            lowercase,
-            numbers,
-            symbols
-          );
-          passwordField.value = password;
-        });
-
-        copyButton.addEventListener("click", function () {
-          passwordField.select();
-          document.execCommand("copy");
-          alert("Password copied to clipboard");
-        });
-
-        downloadButton.addEventListener("click", function () {
-          const password = passwordField.value;
-          const blob = new Blob([password], { type: "text/plain" });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "generated_password.txt";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        });
-
-        function generatePassword(
-          length,
-          uppercase,
-          lowercase,
-          numbers,
-          symbols
-        ) {
-          let charset = "";
-          if (uppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-          if (lowercase) charset += "abcdefghijklmnopqrstuvwxyz";
-          if (numbers) charset += "0123456789";
-          if (symbols) charset += "!@#$%^&*()_-+=<>?";
-
-          let password = "";
-          for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * charset.length);
-            password += charset.charAt(randomIndex);
-          }
-
-          return password;
-        }
-      });
-    </script>
   </main>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const copyButton = document.getElementById('copy');
+      const generateButton = document.getElementById('generate');
+      const loadingNotification = document.getElementById('load-notif');
 
+      copyButton.addEventListener('click', function () {
+        document.getElementById('password').select();
+        document.execCommand('copy');
+        alert('Password copied to clipboard');
+      });
+
+      generateButton.addEventListener("click", function () {
+        loadingNotification.style.display = 'block';
+        const length = parseInt(document.getElementById("length").value);
+        const uppercase = document.getElementById("uppercase").checked;
+        const lowercase = document.getElementById("lowercase").checked;
+        const numbers = document.getElementById("numbers").checked;
+        const symbols = document.getElementById("symbols").checked;
+
+        if (!length || (length < 8 || length > 128)) {
+          alert("Password length must be between 8 and 128");
+          loadingNotification.style.display = 'none';
+          return;
+        }
+
+        fetch('/generate_password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            quantity: 1,
+            length: length,
+            uppercase: uppercase.toString(),
+            lowercase: lowercase.toString(),
+            numbers: numbers.toString(),
+            symbols: symbols.toString()
+          })
+        })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("password").value = data;
+          loadingNotification.style.display = 'none';
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          loadingNotification.style.display = 'none';
+        });
+      });
+
+      document.getElementById('download').addEventListener("click", function () {
+        window.location = '/download_pass';
+      });
+    });
+  </script>
   <footer>
-    <p style="text-align: center">Developed with ❤️ by <span class="fff">Kamolgks</span></p>
+    <p class="psx">Developed with ❤️ by <span style="position: relative;text-shadow: 1px 1px 5px rgb(74, 24, 238), 1px 1px 5px rgb(76, 31, 224),
+    1px 1px 3px rgb(83, 43, 215), 1px 1px 5px rgb(94, 58, 212);">Kamolgks</span></p>
   </footer>
+
 </body>
 
 </html>

@@ -1,4 +1,11 @@
-<p><img src="https://cdn-icons-png.flaticon.com/512/10273/10273288.png" height="60" align="center"">Launch</p>
+# Screenshots (Desktop):
+
+<img src="./static/images/v1.jpg">
+<img src="./static/images/v2.jpg">>
+
+---
+
+<p><img src="https://cdn-icons-png.flaticon.com/512/10273/10273288.png" height="60" align="center">Launch</p>
 
 Clone the repository:
 

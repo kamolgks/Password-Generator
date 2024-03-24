@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+
+html, body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+body {
+  font-family: "Hubballi";
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 0;
+  transition: background-image 0.5s, color 0.5s;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #0000001a;
+}
+
+.psx {
+  color: #000;
+  text-align: center;
+}
+
+.dark-theme {
+  background-image: linear-gradient(-20deg, #555 0%, #222 100%);
+  color: #fff;
+}
+
+.dark-theme .container {
+  background-color: #222;
+}
+
+.dark-theme .psx {
+  color: #fff;
+}
+
+.dark-theme input[type="number"] {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-theme input[type="result"] {
+  background-color: #333;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0 auto;
+}
+
+label {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  font-family: "Hubballi";
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+input[type="result"] {
+  margin-right: 5px;
+}
+
+button {
+  font-family: "Hubballi";
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  border-radius: 13px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.f_text {
+  text-align: center;
+}
+
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#password {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    margin-top: 10px;
+  }
+}
