@@ -1,0 +1,199 @@
+:root {
+  margin: 0 auto;
+  padding: 0;
+
+  --btn-color: #0074d9;
+  --hover-color: #0056b3;
+  --ff-hubballi: "Hubballi";
+  --shadow-f: 1px 1px 5px rgb(74, 24, 238);
+  --shadow-fg: 1px 1px 5px rgb(76, 31, 224);
+  --shadow-fd: 1px 1px 3px rgb(83, 43, 215);
+  --shadow-fs: 1px 1px 5px rgb(94, 58, 212);
+  --btn-text-color: #fff;
+}
+
+.light-theme {
+  --input-result-background-color: #fff;
+  --input-background-color: #fff;
+  --input-result-text-color: #000;
+  --background-image-color: linear-gradient(-20deg, #e9defa 0%, #f2f3d0 100%);
+  --text-color: #000;
+  --container-bg-color: #fff;
+  --label-color: #333333;
+  --container-text-color: #000;
+  --number-color: #000;
+  --foo-color: #000;
+}
+
+.dark-theme {
+  --input-result-background-color: #222;
+  --input-background-color: #333;
+  --input-result-text-color: #fff;
+  --background-image-color: linear-gradient(-20deg, #555 0%, #222 100%);
+  --text-color: #fff;
+  --container-bg-color: #222;
+  --label-color: #fff;
+  --container-text-color: #fff;
+  --number-color: #fff;
+  --foo-color: #fff;
+}
+
+.container {
+  background-color: var(--container-bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  color: var(--container-text-color);
+}
+
+.label {
+  color: var(--label-color);
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.theme-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 160px;
+  height: 40px;
+  border-radius: 20px;
+  position: absolute;
+  bottom: 550px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+body {
+  height: 100vh;
+  font-family: var(--ff-hubballi);  
+  margin-top: 50px;
+  background-image: var(--background-image-color);
+  color: var(--text-color);
+  transition: background-image 0.5s, color 0.5s;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: auto;
+  background-color: var(--color-bg);
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 30px #0000001a;
+}
+
+.foo {
+  text-align: center;
+  color: var(--foo-color);
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0 auto;
+}
+
+label {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  font-family: var(--ff-hubballi);
+  width: 100%;
+  padding: 5px;
+  color: var(--number-color);
+  margin-bottom: 10px;
+  background-color: var(--input-background-color);
+}
+
+input[type="result"] {
+  font-family: var(--ff-hubballi);
+  margin-right: 5px;
+  background-color: var(--input-result-background-color);
+  color: var(--input-result-text-color);
+}
+
+button {
+  font-family: var(--ff-hubballi);
+  background-color: var(--btn-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+.f_text {
+  text-align: center;
+}
+
+#password {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.dev {
+  position: relative;
+  text-shadow: var(--shadow-f), var(--shadow-fd), var(--shadow-fg), var(--shadow-fs);
+}
+
+@media (max-width: 768px) {
+  /* body {
+    height: 100%
+    width: 100%;
+  } */
+  .theme-btn {
+    width: 100px;
+    height: 35px;
+    bottom: 20px;
+    padding: 10px 16px;
+    position: absolute;
+    top: 5px
+  }
+
+  .container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  input[type="number"] {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  /* button {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 14px;
+  } */
+}
+
+@media (hover: hover) {
+  button:hover {
+    background-color: var(--hover-color);
+  }
+}
+
+@media (hover: none) {
+  button:active {
+    background-color: var(--hover-color);
+  }
+}

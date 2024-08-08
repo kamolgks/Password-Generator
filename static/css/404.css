@@ -1,0 +1,51 @@
+:root {
+    --white: #f8f9fa;
+    --color: #343a40;
+    --blue: #007bff;
+    --blue-hover: #0056b3
+}
+
+body {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--color);
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--blue-hover);
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: var(--blue-hover);
+    }
+}
+
+@media (hover: none) {
+    a:hover {
+        color: var(--blue-hover);
+    }
+}

@@ -15,129 +15,54 @@
   <meta property="og:title" content="Password Generator">
   <meta property="og:description" content="Password Generator by @Kamolgks">
 
-  <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.png') }}">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
 </head>
 
-
-<body>
+<body class="light-theme">
   <header>
     <h1>Password Generator</h1>
   </header>
   <main>
-    <button class="theme-btn" onclick="changeTheme()" style="display: flex; align-items: center; justify-content: center;">
-      <img id="theme-img" src="{{ url_for('static', filename='images/moon.png') }}" style="width: 30px;">
-    </button>
-    <script type="text/javascript">
-      function changeTheme() {
-        const body = document.body;
-        const container = document.querySelector('.container');
-        const currentTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
-        body.classList.toggle('dark-theme');
-
-        if (currentTheme === 'light') {
-          body.style.backgroundColor = '#fff';
-          body.style.color = '#000';
-          container.style.color = '#000';
-          document.getElementById('theme-img').src = "{{ url_for('static', filename='images/moon.png') }}";
-        } else {
-          body.style.backgroundColor = '#222';
-          body.style.color = '#fff';
-          container.style.color = '#fff';
-          document.getElementById('theme-img').src = "{{ url_for('static', filename='images/sun.png') }}";
-        }
-      }
-    </script> 
+    <button type="button" data-theme-toggle aria-label="Light theme" class="theme-btn" onclick="changeTheme()">Dark theme</button>
     <div class="container">
       <div class="options">
-        <label for="length">Password Length:</label>
+        <label for="length" class="label">Password Length:</label>
         <input type="number" id="length" min="8" max="128" value="8">
         <br>
-        <label for="uppercase">Include Uppercase Letters:</label>
+        <label for="uppercase" class="label">Include Uppercase Letters:</label>
         <input type="checkbox" id="uppercase" checked>
         <br>
-        <label for="lowercase">Include Lowercase Letters:</label>
+        <label for="lowercase" class="label">Include Lowercase Letters:</label>
         <input type="checkbox" id="lowercase" checked>
         <br>
-        <label for="numbers">Include Numbers:</label>
+        <label for="numbers" class="label">Include Numbers:</label>
         <input type="checkbox" id="numbers" checked>
         <br>
-        <label for="symbols">Include Symbols:</label>
+        <label for="symbols" class="label">Include Symbols:</label>
         <input type="checkbox" id="symbols" checked>
         <br>
       </div>
 
       <button id="generate">Generate Password</button>
-      <div class="result">
+      <div style="margin-top: 20px;">
         <input type="result" id="password" readonly>
         <button id="copy">Copy to Clipboard</button>
         <button id="download">Download Password</button>
         <div id="load-notif" style="display: none;">Generating password...</div>
       </div>
-
     </div>
   </main>
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-      const copyButton = document.getElementById('copy');
-      const generateButton = document.getElementById('generate');
-      const loadingNotification = document.getElementById('load-notif');
 
-      copyButton.addEventListener('click', function () {
-        document.getElementById('password').select();
-        document.execCommand('copy');
-        alert('Password copied to clipboard');
-      });
+  <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/change_theme.js') }}"></script>
 
-      generateButton.addEventListener("click", function () {
-        loadingNotification.style.display = 'block';
-        const length = parseInt(document.getElementById("length").value);
-        const uppercase = document.getElementById("uppercase").checked;
-        const lowercase = document.getElementById("lowercase").checked;
-        const numbers = document.getElementById("numbers").checked;
-        const symbols = document.getElementById("symbols").checked;
-
-        if (!length || (length < 8 || length > 128)) {
-          alert("Password length must be between 8 and 128");
-          loadingNotification.style.display = 'none';
-          return;
-        }
-
-        fetch('/generate_password', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            quantity: 1,
-            length: length,
-            uppercase: uppercase.toString(),
-            lowercase: lowercase.toString(),
-            numbers: numbers.toString(),
-            symbols: symbols.toString()
-          })
-        })
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("password").value = data;
-          loadingNotification.style.display = 'none';
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          loadingNotification.style.display = 'none';
-        });
-      });
-
-      document.getElementById('download').addEventListener("click", function () {
-        window.location = '/download_pass';
-      });
-    });
-  </script>
   <footer>
-    <p class="psx">Developed with ❤️ by <span style="position: relative;text-shadow: 1px 1px 5px rgb(74, 24, 238), 1px 1px 5px rgb(76, 31, 224),
-    1px 1px 3px rgb(83, 43, 215), 1px 1px 5px rgb(94, 58, 212);">Kamolgks</span></p>
+    <p class="foo">Developed with 💜 by <span class="dev">Kamolgks</span></p>
   </footer>
-
 </body>
 
 </html>

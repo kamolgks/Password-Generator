@@ -1,16 +1,22 @@
 # Screenshots (Desktop):
 
-<img src="./static/images/v1.jpg">
-<img src="./static/images/v2.jpg">
+<img src="./static/images/desktop__v1.png">
+<img src="./static/images/desktop__v2.png">
 
 ---
 
-# Screenshots (Mobile):
+<!-- # Screenshots (Mobile):
 
-<img src="./static/images/v3.jpg">
-<img src="./static/images/v4.jpg">
+<img src="./static/images/mobile__v1.png">
+<img src="./static/images/mobile__v2.png">
+--> 
 
----
+# Screenshots (Mobile version): 
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./static/images/mobile__v1.png" alt="Image 1" width="200" />
+  <img src="./static/images/mobile__v2.png" alt="Image 2" width="200" />
+</div>
 
 <p><img src="https://cdn-icons-png.flaticon.com/512/10273/10273288.png" height="60" align="center">Launch</p>
 
