@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}{% endblock %}</title>
+    
+    {% block meta %}{% endblock %}
+    
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.png') }}">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="light-theme">
+    {% block content %}{% endblock %}
+    
+    {% block scripts %}{% endblock %}
+    
+    <footer>
+        <p class="foo">Developed with 💜 by <span class="dev">Kamolgks</span></p>
+    </footer>
+</body>
+</html> 

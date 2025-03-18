@@ -1,68 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
+{% block title %}Password Generator{% endblock %}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Password Generator">
-  <meta name="robots" content="index, nofollow, noarchive">
+{% block meta %}
+<meta name="description" content="Password Generator">
+<meta name="robots" content="index, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Password Generator">
+<meta property="og:description" content="Password Generator by @Kamolgks">
+{% endblock %}
 
-  <title>Password Generator</title>
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Password Generator">
-  <meta property="og:description" content="Password Generator by @Kamolgks">
-
-  <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.png') }}">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
-</head>
-
-<body class="light-theme">
-  <header>
+{% block content %}
+<header>
     <h1>Password Generator</h1>
-  </header>
-  <main>
+</header>
+<main>
     <button type="button" data-theme-toggle aria-label="Light theme" class="theme-btn" onclick="changeTheme()">Dark theme</button>
     <div class="container">
-      <div class="options">
-        <label for="length" class="label">Password Length:</label>
-        <input type="number" id="length" min="8" max="128" value="8">
-        <br>
-        <label for="uppercase" class="label">Include Uppercase Letters:</label>
-        <input type="checkbox" id="uppercase" checked>
-        <br>
-        <label for="lowercase" class="label">Include Lowercase Letters:</label>
-        <input type="checkbox" id="lowercase" checked>
-        <br>
-        <label for="numbers" class="label">Include Numbers:</label>
-        <input type="checkbox" id="numbers" checked>
-        <br>
-        <label for="symbols" class="label">Include Symbols:</label>
-        <input type="checkbox" id="symbols" checked>
-        <br>
-      </div>
+        <div class="options">
+            <label for="length" class="label">Password Length:</label>
+            <input type="number" id="length" min="8" max="128" value="8">
+            <br>
+            <label for="uppercase" class="label">Include Uppercase Letters:</label>
+            <input type="checkbox" id="uppercase" checked>
+            <br>
+            <label for="lowercase" class="label">Include Lowercase Letters:</label>
+            <input type="checkbox" id="lowercase" checked>
+            <br>
+            <label for="numbers" class="label">Include Numbers:</label>
+            <input type="checkbox" id="numbers" checked>
+            <br>
+            <label for="symbols" class="label">Include Symbols:</label>
+            <input type="checkbox" id="symbols" checked>
+            <br>
+        </div>
 
-      <button id="generate">Generate Password</button>
-      <div style="margin-top: 20px;">
-        <input type="result" id="password" readonly>
-        <button id="copy">Copy to Clipboard</button>
-        <button id="download">Download Password</button>
-        <div id="load-notif" style="display: none;">Generating password...</div>
-      </div>
+        <button id="generate">Generate Password</button>
+        <div style="margin-top: 20px;">
+            <input type="result" id="password" readonly>
+            <button id="copy">Copy to Clipboard</button>
+            <button id="download">Download Password</button>
+            <div id="load-notif" style="display: none;">Generating password...</div>
+        </div>
     </div>
-  </main>
+</main>
+{% endblock %}
 
-  <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/change_theme.js') }}"></script>
-
-  <footer>
-    <p class="foo">Developed with 💜 by <span class="dev">Kamolgks</span></p>
-  </footer>
-</body>
-
-</html>
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/change_theme.js') }}"></script>
+{% endblock %}
