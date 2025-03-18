@@ -52,5 +52,5 @@ app.add_url_rule('/error', 'error_handler', error_handler_404)
 app.register_error_handler(404, error_handler_404)
 
 if __name__ == '__main__':
-    logger.info(f"Запуск сервера на http://{host}:{PORT}")
+    logger.info(f"Running the server on http://{host}:{PORT}")
     app.run(host=host, port=PORT, debug=False, threaded=True)
